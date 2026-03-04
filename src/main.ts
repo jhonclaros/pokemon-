@@ -33,7 +33,7 @@ const renderList = () => {
         const card = renderPokemon(
         {
             name: pokemon.name,
-            image:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url.split("/")[6]}.png`
+            image: pokemon.image || `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url.split("/")[6]}.png`
         },
         isDiscovered,
         description
@@ -45,14 +45,23 @@ const renderList = () => {
 
 searchBtn.addEventListener("click", async ()=>{
 
-    const name = searchInput.value.toLowerCase();
+    const name = searchInput.value.trim().toLowerCase();
 
     try{
 
         const pokemon = await discoverPokemon(name);
 
-        discovered.add(name);
-        discoveredDescriptions.set(name, pokemon.description);
+        const alreadyInList = pokemonList.some((item) => item.name === pokemon.name);
+
+        if(!alreadyInList){
+            pokemonList.unshift({
+                name: pokemon.name,
+                image: pokemon.image
+            });
+        }
+
+        discovered.add(pokemon.name);
+        discoveredDescriptions.set(pokemon.name, pokemon.description);
 
         renderList();
 
