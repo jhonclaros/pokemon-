@@ -1,3 +1,4 @@
+import "./style.css";
 import { getPokemons } from "./api/pokemonApi";
 import { discoverPokemon } from "./services/pokemonService";
 import { renderPokemon } from "./ui/renderPokemon";
