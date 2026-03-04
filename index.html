@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pokedex</title>
+
+<style>
+
+body{
+font-family: Arial;
+text-align:center;
+}
+
+#pokemonList{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:20px;
+padding:20px;
+}
+
+.pokemon{
+border:1px solid #ccc;
+padding:10px;
+border-radius:10px;
+}
+
+.locked{
+filter: grayscale(100%);
+opacity:0.4;
+}
+
+img{
+width:100px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Pokedex</h1>
+
+<input id="searchInput" placeholder="Buscar pokemon">
+<button id="searchBtn">Buscar</button>
+
+<div id="pokemonList"></div>
+
+<script type="module" src="/src/main.ts"></script>
+
+</body>
+</html>
